@@ -1,6 +1,6 @@
-package nl.suriani.declarative_design.example.add_employees;
+package nl.suriani.declarative_design.examples.add_employees;
 
-import nl.suriani.declarative_design.example.domain.Employee;
+import nl.suriani.declarative_design.examples.domain.Employee;
 import nl.suriani.declarative_design.Validation;
 
 import java.time.LocalDate;

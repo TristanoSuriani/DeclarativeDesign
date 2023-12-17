@@ -1,16 +1,19 @@
-package nl.suriani.declarative_design.example.add_employees;
+package nl.suriani.declarative_design.examples.add_employees;
 
-import nl.suriani.declarative_design.example.domain.Employee;
-import nl.suriani.declarative_design.example.ports.EmployeeRepository;
-import nl.suriani.declarative_design.example.ports.EmployeesRegistryRepository;
-import nl.suriani.declarative_design.example.ports.EmployeesRegistryResponse;
+import nl.suriani.declarative_design.examples.add_employees.AddEmployeeCommand;
+import nl.suriani.declarative_design.examples.add_employees.AddEmployeePolicies;
+import nl.suriani.declarative_design.examples.add_employees.AddEmployeeUseCase;
+import nl.suriani.declarative_design.examples.domain.Employee;
+import nl.suriani.declarative_design.examples.ports.EmployeeRepository;
+import nl.suriani.declarative_design.examples.ports.EmployeesRegistryRepository;
+import nl.suriani.declarative_design.examples.ports.EmployeesRegistryResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.UUID;
 
-import static nl.suriani.declarative_design.example.add_employees.AddEmployeeUseCase.*;
+import static nl.suriani.declarative_design.examples.add_employees.AddEmployeeUseCase.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddEmployeeUseCaseTest {

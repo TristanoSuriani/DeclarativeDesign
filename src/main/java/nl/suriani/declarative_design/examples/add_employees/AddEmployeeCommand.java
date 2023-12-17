@@ -1,4 +1,4 @@
-package nl.suriani.declarative_design.example.add_employees;
+package nl.suriani.declarative_design.examples.add_employees;
 
 import java.time.LocalDate;
 import java.util.UUID;

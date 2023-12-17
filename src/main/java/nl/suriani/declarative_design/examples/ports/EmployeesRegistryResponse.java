@@ -1,4 +1,4 @@
-package nl.suriani.declarative_design.example.ports;
+package nl.suriani.declarative_design.examples.ports;
 
 import java.time.LocalDate;
 import java.util.UUID;

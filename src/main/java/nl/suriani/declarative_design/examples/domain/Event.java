@@ -1,4 +1,4 @@
-package nl.suriani.declarative_design.example.domain;
+package nl.suriani.declarative_design.examples.domain;
 
 import java.time.LocalDateTime;
 

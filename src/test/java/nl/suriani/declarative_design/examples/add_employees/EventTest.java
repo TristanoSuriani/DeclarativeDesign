@@ -1,6 +1,6 @@
-package nl.suriani.declarative_design.example.add_employees;
+package nl.suriani.declarative_design.examples.add_employees;
 
-import nl.suriani.declarative_design.example.domain.Event;
+import nl.suriani.declarative_design.examples.domain.Event;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

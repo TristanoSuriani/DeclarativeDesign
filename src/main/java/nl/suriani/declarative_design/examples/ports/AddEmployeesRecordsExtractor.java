@@ -1,6 +1,6 @@
-package nl.suriani.declarative_design.example.ports;
+package nl.suriani.declarative_design.examples.ports;
 
-import nl.suriani.declarative_design.example.domain.Employee;
+import nl.suriani.declarative_design.examples.domain.Employee;
 
 import java.util.List;
 
