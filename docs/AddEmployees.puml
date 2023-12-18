@@ -1,0 +1,52 @@
+@startuml
+node infra {
+    package controller {
+        ["AddEmployeesRestController"]
+    }
+
+    node application {
+        package saga {
+            ["AddEmployeesSaga"]
+        }
+
+        package usecase {
+            ["BulkAddEmployeesUseCase"]
+            ["AddEmployeeUseCase"]
+            ["SendNotificationUseCase"]
+            ["AddEmployeePolicies"]
+            ["AddEmployeesPolicies"]
+        }
+
+        package port {
+            interface AddEmployeesRecordsExtractor
+            interface EmployeesRegistryRepository
+            interface EmployeeRepository
+            interface NotificationGateway
+        }
+    }
+
+    component AddEmployeesRecordsExtractorImpl
+    component EmployeesRegistryRepositoryImpl
+    component EmployeeRepositoryImpl
+    component NotificationGatewayImpl
+}
+
+
+
+["AddEmployeesRestController"] -down-> ["AddEmployeesSaga"]
+["AddEmployeesSaga"] -down-> ["BulkAddEmployeesUseCase"]
+["AddEmployeesSaga"] -down-> ["AddEmployeeUseCase"]
+["AddEmployeesSaga"] -down-> ["SendNotificationUseCase"]
+
+["BulkAddEmployeesUseCase"] -down-> AddEmployeesRecordsExtractor
+["SendNotificationUseCase"] -down-> NotificationGateway
+["AddEmployeeUseCase"] -down-> EmployeesRegistryRepository
+["AddEmployeeUseCase"] -down-> EmployeeRepository
+["BulkAddEmployeesUseCase"] -right-> ["AddEmployeesPolicies"]
+["AddEmployeeUseCase"] -left-> ["AddEmployeePolicies"]
+
+AddEmployeesRecordsExtractorImpl ..up..|> AddEmployeesRecordsExtractor
+EmployeesRegistryRepositoryImpl ..up..|> EmployeesRegistryRepository
+EmployeeRepositoryImpl ..up..|> EmployeeRepository
+NotificationGatewayImpl ..up..|> NotificationGateway
+@enduml
