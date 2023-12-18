@@ -5,3 +5,7 @@ Playground to implement and test Tools and Patterns for Declarative Programming 
 It is not supposed to be used as a library.
 
 Examples are present [here](src/main/java/nl/suriani/declarative_design/examples). Their unit tests are [here](src/test/java/nl/suriani/declarative_design/examples).
+
+Component diagram for "Add Employees" example functionality:
+
+![image](docs/AddEmployees.png)
