@@ -1,0 +1,18 @@
+@startuml
+
+state NewMatch
+state MatchCancelled
+state MatchInProgress
+state MatchSuspended
+state MatchTerminated
+
+NewMatch -down-> MatchInProgress : apply
+MatchInProgress -up-> NewMatch : revert
+NewMatch -down-> MatchCancelled : apply
+MatchCancelled -up-> NewMatch : revert
+MatchInProgress -down-> MatchSuspended : apply
+MatchSuspended -down-> MatchInProgress : revert
+MatchInProgress -down-> MatchTerminated : apply
+MatchTerminated -down-> MatchInProgress : revert
+
+@enduml

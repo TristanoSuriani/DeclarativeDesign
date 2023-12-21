@@ -1,7 +1,5 @@
-package nl.suriani.playereventkata.application.domain.event;
+package nl.suriani.declarative_design.examples.football;
 
-import nl.suriani.playereventkata.application.domain.player.PlayerID;
-import nl.suriani.playereventkata.application.domain.player.PlayerName;
 import nl.suriani.playereventkata.application.domain.shared.Guard;
 
 import java.util.List;

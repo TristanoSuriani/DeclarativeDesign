@@ -1,4 +1,4 @@
-package nl.suriani.playereventkata.application.domain.team;
+package nl.suriani.declarative_design.examples.football;
 
 import nl.suriani.playereventkata.application.domain.shared.Value;
 

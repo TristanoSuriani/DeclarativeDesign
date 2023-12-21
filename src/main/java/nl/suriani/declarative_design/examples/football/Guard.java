@@ -1,4 +1,4 @@
-package nl.suriani.playereventkata.application.domain.shared;
+package nl.suriani.declarative_design.examples.football;
 
 import java.util.Arrays;
 
@@ -21,6 +21,12 @@ public interface Guard {
     record IntValue(int value) {
         public Between isBetween(int from) {
             return new Between(value, from);
+        }
+
+        public void isPositive() {
+            if (value <= 0) {
+                throw new ValueOutOfRangeException();
+            }
         }
     }
 

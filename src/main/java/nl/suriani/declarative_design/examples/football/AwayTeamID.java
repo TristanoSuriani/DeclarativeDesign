@@ -2,8 +2,8 @@ package nl.suriani.declarative_design.examples.football;
 
 import java.util.UUID;
 
-public class HomeTeamID extends Value<UUID> {
-    public HomeTeamID(UUID value) {
+public class AwayTeamID extends Value<UUID> {
+    public AwayTeamID(UUID value) {
         super(value);
     }
 }

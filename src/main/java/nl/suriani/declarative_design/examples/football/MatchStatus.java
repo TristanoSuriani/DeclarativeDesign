@@ -1,4 +1,4 @@
-package nl.suriani.playereventkata.application.domain.match;
+package nl.suriani.declarative_design.examples.football;
 
 public enum MatchStatus {
     NEW,

@@ -1,12 +1,9 @@
 package nl.suriani.declarative_design.examples.add_employees;
 
-import nl.suriani.declarative_design.examples.add_employees.AddEmployeeCommand;
-import nl.suriani.declarative_design.examples.add_employees.AddEmployeePolicies;
-import nl.suriani.declarative_design.examples.add_employees.AddEmployeeUseCase;
-import nl.suriani.declarative_design.examples.domain.Employee;
-import nl.suriani.declarative_design.examples.ports.EmployeeRepository;
-import nl.suriani.declarative_design.examples.ports.EmployeesRegistryRepository;
-import nl.suriani.declarative_design.examples.ports.EmployeesRegistryResponse;
+import nl.suriani.declarative_design.examples.add_employees.domain.Employee;
+import nl.suriani.declarative_design.examples.add_employees.ports.EmployeeRepository;
+import nl.suriani.declarative_design.examples.add_employees.ports.EmployeesRegistryRepository;
+import nl.suriani.declarative_design.examples.add_employees.ports.EmployeesRegistryResponse;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -56,7 +53,7 @@ class AddEmployeeUseCaseTest {
 
     @Test
     void employeeNotAdded_notFound() {
-        var useCase = new AddEmployeeUseCase(new AddEmployeePolicies(), employeeRepository, employeesRegistryRepository_notFound);
+        var useCase = new AddEmployeeUseCase(new AddEmployeePoliciesImpl(), employeeRepository, employeesRegistryRepository_notFound);
         var command = givenCommand(40);
 
         var event = useCase.add(command)
@@ -67,7 +64,7 @@ class AddEmployeeUseCaseTest {
 
     @Test
     void employeeDeclined_olderThan35() {
-        var useCase = new AddEmployeeUseCase(new AddEmployeePolicies(), employeeRepository, employeesRegistryRepository);
+        var useCase = new AddEmployeeUseCase(new AddEmployeePoliciesImpl(), employeeRepository, employeesRegistryRepository);
         var command = givenCommand(40);
 
         var event = useCase.add(command)
@@ -78,7 +75,7 @@ class AddEmployeeUseCaseTest {
 
     @Test
     void employeeDeclined_youngerThan18() {
-        var useCase = new AddEmployeeUseCase(new AddEmployeePolicies(), employeeRepository, employeesRegistryRepository);
+        var useCase = new AddEmployeeUseCase(new AddEmployeePoliciesImpl(), employeeRepository, employeesRegistryRepository);
         var command = givenCommand(17);
 
         var event = useCase.add(command)
@@ -89,7 +86,7 @@ class AddEmployeeUseCaseTest {
 
     @Test
     void employeeDeclined_staffNumberInThe0To999Range() {
-        var useCase = new AddEmployeeUseCase(new AddEmployeePolicies(), employeeRepository, employeesRegistryRepository_staffNumberIn0To999Range);
+        var useCase = new AddEmployeeUseCase(new AddEmployeePoliciesImpl(), employeeRepository, employeesRegistryRepository_staffNumberIn0To999Range);
         var command = givenCommand(35);
 
         var event = useCase.add(command)

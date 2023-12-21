@@ -1,26 +1,41 @@
 package nl.suriani.declarative_design.examples.football;
 
-import java.util.List;
-
 public sealed interface Match {
-    record GenericMatch(MatchID matchID,
-                               MatchStatus status,
-                               MatchName name,
-                               TeamID team1ID,
-                               TeamID team2ID,
-                               List<PlayerEvent> playerEvents) {
 
-        public GenericMatch {
-            Guard.areNotNull(matchID, name, team1ID, team2ID, playerEvents);
-            playerEvents = List.copyOf(playerEvents);
+    record NewMatch() implements Match {}
+
+    record MatchCancelled() implements Match {}
+
+    record MatchSuspended(MatchID matchID,
+                          MatchName name,
+                          HomeTeamID homeTeamID,
+                          AwayTeamID awayTeamID,
+                          Score score) implements Match {
+
+        public MatchSuspended {
+            Guard.areNotNull(matchID, name, homeTeamID, awayTeamID, score);
         }
+    }
 
-        public GenericMatch(TeamID team1ID, TeamID team2ID) {
-            this(new MatchID(), MatchStatus.NEW, new MatchName(), team1ID, team2ID, List.of());
+    record MatchInProgress(MatchID matchID,
+                           MatchName name,
+                           HomeTeamID homeTeamID,
+                           AwayTeamID awayTeamID,
+                           Score score) implements Match {
+
+        public MatchInProgress {
+            Guard.areNotNull(matchID, name, homeTeamID, awayTeamID, score);
         }
+    }
 
-        public boolean isInProgress() {
-            return status == MatchStatus.IN_PROGRESS;
+    record MatchTerminated(MatchID matchID,
+                           MatchName name,
+                           HomeTeamID homeTeamID,
+                           AwayTeamID awayTeamID,
+                           Score score) implements Match {
+
+        public MatchTerminated {
+            Guard.areNotNull(matchID, name, homeTeamID, awayTeamID, score);
         }
     }
 

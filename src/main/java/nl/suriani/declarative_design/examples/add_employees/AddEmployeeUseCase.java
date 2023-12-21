@@ -1,22 +1,22 @@
 package nl.suriani.declarative_design.examples.add_employees;
 
-import nl.suriani.declarative_design.examples.domain.Employee;
-import nl.suriani.declarative_design.examples.domain.Event;
-import nl.suriani.declarative_design.examples.ports.EmployeeRepository;
-import nl.suriani.declarative_design.examples.ports.EmployeesRegistryRepository;
-import nl.suriani.declarative_design.examples.ports.EmployeesRegistryResponse;
+import nl.suriani.declarative_design.examples.add_employees.domain.Employee;
+import nl.suriani.declarative_design.examples.add_employees.domain.Event;
+import nl.suriani.declarative_design.examples.add_employees.ports.EmployeeRepository;
+import nl.suriani.declarative_design.examples.add_employees.ports.EmployeesRegistryRepository;
+import nl.suriani.declarative_design.examples.add_employees.ports.EmployeesRegistryResponse;
 
 import java.util.UUID;
 import java.util.function.Function;
 
 public class AddEmployeeUseCase {
-    private final AddEmployeePolicies addEmployeePolicies;
+    private final AddEmployeePoliciesImpl addEmployeePolicies;
     private final EmployeeRepository employeeRepository;
     private final EmployeesRegistryRepository employeesRegistryRepository;
 
     private final static String EMPLOYEE_NOT_FOUND = "Employee not found";
 
-    public AddEmployeeUseCase(AddEmployeePolicies addEmployeePolicies, EmployeeRepository employeeRepository, EmployeesRegistryRepository employeesRegistryRepository) {
+    public AddEmployeeUseCase(AddEmployeePoliciesImpl addEmployeePolicies, EmployeeRepository employeeRepository, EmployeesRegistryRepository employeesRegistryRepository) {
         this.addEmployeePolicies = addEmployeePolicies;
         this.employeeRepository = employeeRepository;
         this.employeesRegistryRepository = employeesRegistryRepository;

@@ -1,4 +1,4 @@
-package nl.suriani.playereventkata.application.domain.shared;
+package nl.suriani.declarative_design.examples.football;
 
 public class ValueOutOfRangeException extends DomainValidationException {
 }

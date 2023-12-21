@@ -1,16 +1,17 @@
 package nl.suriani.declarative_design.examples.add_employees;
 
-import nl.suriani.declarative_design.examples.domain.Employee;
+import nl.suriani.declarative_design.examples.add_employees.domain.Employee;
 import nl.suriani.declarative_design.Validation;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.function.Predicate;
 
-public class AddEmployeePolicies {
+public class AddEmployeePoliciesImpl implements AddEmployeePolicies {
 
     private final static String ERROR_MESSAGE_TEMPLATE = "%s %s";
 
+    @Override
     public PolicyResult validate(Employee employee) {
         return Validation.of(employee)
                 .validate(isAtLeast18YearsOld(), employee1 -> "is younger than 18 years old")
