@@ -3,6 +3,8 @@ package nl.suriani.declarative_design.examples.football.usecase;
 import nl.suriani.declarative_design.examples.football.Match;
 import nl.suriani.declarative_design.examples.football.MatchEvent;
 
+import java.util.List;
+
 public class PlanNewMatchUseCase {
     private final MatchRepository matchRepository;
 
@@ -18,14 +20,26 @@ public class PlanNewMatchUseCase {
                     command.homeTeamID(), command.awayTeamID()));
 
         var initialState = maybeMatch.orElse(new Match.NoMatch());
-        var decider = Deciders.planNewMatch(initialState);
+        var decider = getDecider(initialState);
         var events = decider.decide().apply(command, match);
         var newState = Deciders.applyAllEventsToState(match, events, decider.evolve());
 
-        if (!events.isEmpty()) {
-            matchRepository.save(newState);
-        }
+        events.stream().findAny()
+                .ifPresent(e -> matchRepository.save(newState));
 
         return new Response<>(newState, events);
+    }
+
+    private Decider<PlanNewMatchCommand, Match, MatchEvent> getDecider(Match initialState) {
+        return new Decider<>(
+                (startMatchCommand, match) -> {
+                    if (initialState instanceof Match.NoMatch) {
+                        return List.of(new MatchEvent.MatchPlanned(match));
+                    }
+                    return List.of();
+                },
+                (match, matchEvent) -> match,
+                (match) -> false,
+                () -> initialState);
     }
 }

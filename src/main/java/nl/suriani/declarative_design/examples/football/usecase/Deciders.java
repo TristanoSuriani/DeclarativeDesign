@@ -10,10 +10,10 @@ public interface Deciders {
     static Decider<PlanNewMatchCommand, Match, MatchEvent> planNewMatch(Match initialState) {
         return new Decider<>(
                 (startMatchCommand, match) -> {
-                    if (!(initialState instanceof Match.NoMatch)) {
-                        return List.of();
+                    if (initialState instanceof Match.NoMatch) {
+                        return List.of(new MatchEvent.MatchPlanned(match));
                     }
-                    return List.of(new MatchEvent.MatchPlanned(match));
+                    return List.of();
                 },
                 (match, matchEvent) -> match,
                 (match) -> false,
