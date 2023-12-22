@@ -24,7 +24,7 @@ public interface Guard {
         }
 
         public void isPositive() {
-            if (value <= 0) {
+            if (value < 0) {
                 throw new ValueOutOfRangeException();
             }
         }

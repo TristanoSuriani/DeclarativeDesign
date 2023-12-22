@@ -9,6 +9,10 @@ public record Score(int scoreHomeTeam, int scoreAwayTeam) {
                 .isPositive();
     }
 
+    public Score() {
+        this(0, 0);
+    }
+
     public Score homeTeamScores() {
         return new Score(scoreHomeTeam + 1, scoreAwayTeam);
     }
