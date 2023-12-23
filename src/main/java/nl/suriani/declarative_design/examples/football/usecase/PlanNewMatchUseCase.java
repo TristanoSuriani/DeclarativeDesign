@@ -24,7 +24,8 @@ public class PlanNewMatchUseCase {
         var events = decider.decide().apply(command, match);
         var newState = Deciders.applyAllEventsToState(match, events, decider.evolve());
 
-        events.stream().findAny()
+        events.stream()
+                .findAny()
                 .ifPresent(e -> matchRepository.save(newState));
 
         return new Response<>(newState, events);
@@ -34,7 +35,7 @@ public class PlanNewMatchUseCase {
         return new Decider<>(
                 (startMatchCommand, match) -> {
                     if (initialState instanceof Match.NoMatch) {
-                        return List.of(new MatchEvent.MatchPlanned(match));
+                        return List.of(new MatchEvent.NewMatchCreated(match));
                     }
                     return List.of();
                 },

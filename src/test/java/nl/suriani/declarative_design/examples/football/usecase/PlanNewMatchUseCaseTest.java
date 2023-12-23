@@ -71,6 +71,6 @@ class PlanNewMatchUseCaseTest {
         assertTrue(response.newState() instanceof Match.NewMatch);
         assertEquals(match, response.newState());
         assertEquals(1, response.events().size());
-        assertTrue(response.events().get(0) instanceof MatchEvent.MatchPlanned);
+        assertTrue(response.events().get(0) instanceof MatchEvent.NewMatchCreated);
     }
 }

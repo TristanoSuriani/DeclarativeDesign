@@ -1,11 +1,13 @@
 @startuml
 
+state NoMatch
 state NewMatch
 state MatchCancelled
 state MatchInProgress
 state MatchSuspended
 state MatchTerminated
 
+NoMatch -down-> NewMatch : create
 NewMatch -down-> MatchInProgress : apply
 MatchInProgress -up-> NewMatch : revert
 NewMatch -down-> MatchCancelled : apply

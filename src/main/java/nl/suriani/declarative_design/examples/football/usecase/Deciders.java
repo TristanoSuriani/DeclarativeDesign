@@ -11,7 +11,7 @@ public interface Deciders {
         return new Decider<>(
                 (startMatchCommand, match) -> {
                     if (initialState instanceof Match.NoMatch) {
-                        return List.of(new MatchEvent.MatchPlanned(match));
+                        return List.of(new MatchEvent.NewMatchCreated(match));
                     }
                     return List.of();
                 },
@@ -24,11 +24,11 @@ public interface Deciders {
     static Decider<StartMatchCommand, Match, MatchEvent> startMatch(Match initialState) {
         return new Decider<>(
                 (startMatchCommand, match) -> {
-                    if (!(initialState instanceof Match.NewMatch)) {
-                        return List.of();
+                    if (initialState instanceof Match.NewMatch) {
+                        var newMatch = (Match.NewMatch) match;
+                        return List.of(new MatchEvent.MatchStarted(newMatch.matchID()));
                     }
-                    var newMatch = (Match.NewMatch) match;
-                    return List.of(new MatchEvent.MatchStarted(newMatch.matchID()));
+                    return List.of();
                 },
                 (match, matchEvent) -> {
                     if (match instanceof Match.NewMatch) {

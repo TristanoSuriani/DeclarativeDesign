@@ -48,7 +48,7 @@ class DecidersTest {
 
         var events = decider.decide().apply(command, match);
         assertEquals(1, events.size());
-        assertTrue(events.get(0) instanceof MatchEvent.MatchPlanned);
+        assertTrue(events.get(0) instanceof MatchEvent.NewMatchCreated);
         var newState = Deciders.applyAllEventsToState(match, events, decider.evolve());
         assertEquals(match, newState);
     }
