@@ -1,0 +1,30 @@
+@startuml
+
+state NewGame
+state InProgress {
+    state WaitingForBothPlayersMoves
+    state WaitingForPlayer1Move
+    state WaitingForPlayer2Move
+}
+
+state Terminated {
+    state Player1Wins
+    state Player2Wins
+    state GameCancelled
+}
+
+NewGame -down-> GameCancelled : game cancelled by player
+InProgress ---down--> GameCancelled : game cancelled by player
+
+NewGame -down-> WaitingForBothPlayersMoves : player2 joined the game
+
+WaitingForBothPlayersMoves -down--> WaitingForPlayer1Move : player2 has moved
+WaitingForBothPlayersMoves -down--> WaitingForPlayer2Move : player1 has moved
+
+WaitingForPlayer1Move -down-> Player1Wins : game terminated by system
+WaitingForPlayer2Move -down-> Player2Wins : game terminated by system
+
+WaitingForPlayer1Move -down-> WaitingForBothPlayersMoves : both players have moved
+WaitingForPlayer2Move -down-> WaitingForBothPlayersMoves : both players have moved
+
+@enduml
