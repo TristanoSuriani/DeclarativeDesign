@@ -9,6 +9,11 @@ public sealed interface Game {
     }
 
     record NewGame(UUID id, Player player1) implements Game {
+        public NewGame {
+            Guards.isNotNull(id);
+            Guards.isNotNull(player1);
+        }
+
         Terminated.GameCancelled cancel() {
             return new Terminated.GameCancelled(id);
         }
@@ -20,6 +25,12 @@ public sealed interface Game {
 
     sealed interface InProgress extends Game {
         record WaitingForBothPlayersMoves(UUID id, Player player1, Player player2) implements InProgress {
+            public WaitingForBothPlayersMoves {
+                Guards.isNotNull(id);
+                Guards.isNotNull(player1);
+                Guards.isNotNull(player2);
+            }
+
             Terminated.GameCancelled cancel() {
                 return new Terminated.GameCancelled(id);
             }
@@ -34,6 +45,12 @@ public sealed interface Game {
         }
 
         record WaitingForPlayer1Move(UUID id, Player player1, Player player2, Move movePlayer2) implements InProgress {
+            public WaitingForPlayer1Move {
+                Guards.isNotNull(id);
+                Guards.isNotNull(player1);
+                Guards.isNotNull(player2);
+            }
+
             Terminated.GameCancelled cancel() {
                 return new Terminated.GameCancelled(id);
             }
@@ -48,6 +65,12 @@ public sealed interface Game {
         }
 
         record WaitingForPlayer2Move(UUID id, Player player1, Player player2, Move movePlayer1) implements InProgress {
+            public WaitingForPlayer2Move {
+                Guards.isNotNull(id);
+                Guards.isNotNull(player1);
+                Guards.isNotNull(player2);
+            }
+
             Terminated.GameCancelled cancel() {
                 return new Terminated.GameCancelled(id);
             }
@@ -63,11 +86,27 @@ public sealed interface Game {
     }
 
     sealed interface Terminated extends Game {
-        record Player1Wins(UUID id, Player player1, Player player2) implements Terminated {}
+        record Player1Wins(UUID id, Player player1, Player player2) implements Terminated {
+            public Player1Wins {
+                Guards.isNotNull(id);
+                Guards.isNotNull(player1);
+                Guards.isNotNull(player2);
+            }
+        }
 
-        record Player2Wins(UUID id, Player player1, Player player2) implements Terminated {}
+        record Player2Wins(UUID id, Player player1, Player player2) implements Terminated {
+            public Player2Wins {
+                Guards.isNotNull(id);
+                Guards.isNotNull(player1);
+                Guards.isNotNull(player2);
+            }
+        }
 
-        record GameCancelled(UUID id) implements Terminated {}
+        record GameCancelled(UUID id) implements Terminated {
+            public GameCancelled {
+                Guards.isNotNull(id);
+            }
+        }
     }
 
 }
